@@ -39,5 +39,68 @@ const getOneNoteData = async(req, res) => {
     }
 }
 
+
+//add new note
+const addNewNote = async(req, res) => {
+    try {
+
+
+        if (!req.body.title || !req.body.content) {
+            return res.status(400).send({ message: "Please fill out all input fields" })
+        }
+
+        const newNote = {
+            title: req.body.title,
+            content: req.body.content
+        }
+
+        const note = await Note.create(newNote)
+        return res.status(200).send({ message: "New Note added successfully" })
+
+
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+
+//update exsist note
+const updateNote = async(req, res) => {
+    try {
+        if (!req.body.title || !req.body.content) {
+            return res.status(400).send("Complete all the empty spaces")
+        }
+
+        const { id } = req.params;
+
+        const note = await Note.findByIdAndUpdate(id, req.body);
+
+        if (!note) {
+            return res.send("No such note found!").status(400)
+        } else {
+            return res.send("Update Completed Successfully!").status(400)
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+const deleteNote = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const delNote = await Note.findByIdAndDelete(id);
+
+        if (!delNote) {
+            return res.status(400).send("No Note Found with this ID");
+        } else {
+            return res.status(200).send("Note Deleted Successfully")
+        }
+
+
+    } catch (error) {
+        return res.status(500).json({ message: error.message })
+    }
+}
+
 //export the functions
-module.exports = { getAllNoteData, getOneNoteData }
+module.exports = { getAllNoteData, getOneNoteData, addNewNote, updateNote, deleteNote }
