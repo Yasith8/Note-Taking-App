@@ -13,6 +13,15 @@ const noteSchema = new Schema({
     content: {
         type: String,
         requite: true
+    },
+    color: {
+        type: String,
+        require: false,
+        default: "white"
+    },
+    category: {
+        type: String,
+        require: true
     }
 }, { timestamps: true });
 

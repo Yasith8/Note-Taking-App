@@ -1,6 +1,7 @@
 //imported required modules
 const mongoose = require('mongoose')
 const Note = require("../models/notemodels")
+const Category = require("../models/category")
 
 //get all notes from db
 const getAllNoteData = async(req, res) => {
@@ -44,18 +45,26 @@ const getOneNoteData = async(req, res) => {
 const addNewNote = async(req, res) => {
     try {
 
+        const { title, content, category } = req.body;
 
-        if (!req.body.title || !req.body.content) {
+        if (!title || !content) {
             return res.status(400).send({ message: "Please fill out all input fields" })
+        }
+
+        let categoryObj = await Category.findOne({ name: category });
+        if (!categoryObj) {
+            categoryObj = new Category({ name: category });
+            await categoryObj.save();
         }
 
         const newNote = {
             title: req.body.title,
-            content: req.body.content
+            content: req.body.content,
+            category: categoryObj._id
         }
 
         const note = await Note.create(newNote)
-        return res.status(200).send({ message: "New Note added successfully" })
+        return res.status(200).send({ data: note, message: "New Note added successfully" })
 
 
     } catch (error) {
