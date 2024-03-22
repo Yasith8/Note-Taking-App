@@ -20,6 +20,39 @@ const getAllNoteData = async(req, res) => {
 }
 
 
+//add new note
+const addNewNote = async(req, res) => {
+    try {
+
+        const { title, content, category } = req.body;
+
+        if (!title || !content) {
+            return res.status(400).send({ message: "Please fill out all input fields" })
+        }
+
+        let categoryObj = await Category.findOne({ name: category });
+
+        if (!categoryObj) {
+            categoryObj = new Category({ name: category });
+            await categoryObj.save();
+
+        }
+        const newNote = {
+            title: req.body.title,
+            content: req.body.content,
+            category: categoryObj.id
+        }
+
+        const note = await Note.create(newNote)
+        return res.status(200).send({ data: note, message: "New Note added successfully" })
+
+
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+
 //get specific note based on id
 const getOneNoteData = async(req, res) => {
 
@@ -40,37 +73,6 @@ const getOneNoteData = async(req, res) => {
     }
 }
 
-
-//add new note
-const addNewNote = async(req, res) => {
-    try {
-
-        const { title, content, category } = req.body;
-
-        if (!title || !content) {
-            return res.status(400).send({ message: "Please fill out all input fields" })
-        }
-
-        let categoryObj = await Category.findOne({ name: category });
-        if (!categoryObj) {
-            categoryObj = new Category({ name: category });
-            await categoryObj.save();
-        }
-
-        const newNote = {
-            title: req.body.title,
-            content: req.body.content,
-            category: categoryObj._id
-        }
-
-        const note = await Note.create(newNote)
-        return res.status(200).send({ data: note, message: "New Note added successfully" })
-
-
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
-    }
-}
 
 
 //update exsist note

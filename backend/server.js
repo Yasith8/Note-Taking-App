@@ -6,6 +6,9 @@ const cors = require('cors');
 
 const NoteRoutes = require('./routes/noteRoutes')
 
+
+const { getCategory, deleteCategory } = require('./controller/categoryController')
+
 //initialize express app
 const app = express();
 
@@ -18,6 +21,9 @@ app.use(cors());
 
 app.use('/note', NoteRoutes)
 
+
+app.get('/category', getCategory)
+app.delete('/category/:id', deleteCategory)
 
 
 const PORT = process.env.PORT;

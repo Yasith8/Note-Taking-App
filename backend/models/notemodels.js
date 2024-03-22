@@ -20,7 +20,8 @@ const noteSchema = new Schema({
         default: "white"
     },
     category: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'catrgories',
         require: true
     }
 }, { timestamps: true });
