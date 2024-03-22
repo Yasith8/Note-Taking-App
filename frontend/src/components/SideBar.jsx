@@ -7,6 +7,7 @@ import { MdRecycling } from "react-icons/md";
 import { PiFolderNotchOpenLight } from "react-icons/pi";
 import { HiPlusSm } from "react-icons/hi";
 import { RiLifebuoyLine } from "react-icons/ri";
+import { Link } from 'react-router-dom'
 
 function SideBar() {
   return (
@@ -17,18 +18,20 @@ function SideBar() {
       <div className="w-full h-[1px] bg-gray-400 mt-4"></div>
       <div className="flex flex-col justify-between gap-4 mt-2">
         <div className="flex flex-col">
-          <button className="flex items-center gap-4 hover:bg-black hover:text-white p-2 pl-5 mx-4 justify-start my-1 rounded-md">
+          <Link to={"/addnote"} className="flex items-center gap-4 hover:bg-black hover:text-white p-2 pl-5 mx-4 justify-start my-1 rounded-md cursor-pointer">
             <IoMdAddCircleOutline />
             <span>Create Note</span>
-          </button>
-          <button className="flex items-center gap-4 hover:bg-black hover:text-white p-2 pl-5 mx-4 justify-start my-1 rounded-md">
+          </Link>
+            <label htmlFor="#search">
+          <Link to={"/"} className="flex items-center gap-4 hover:bg-black hover:text-white p-2 pl-5 mx-4 justify-start my-1 rounded-md cursor-pointer">
             <IoSearchCircleOutline />
             <span>Search Note</span>
-          </button>
-          <button className="flex items-center gap-4 hover:bg-black hover:text-white p-2 pl-5 mx-4 justify-start my-1 rounded-md">
-            <MdRecycling />
+          </Link>
+              </label>
+          <Link to={"/deletednote"} className="flex items-center gap-4 hover:bg-black hover:text-white p-2 pl-5 mx-4 justify-start my-1 rounded-md cursor-pointer">
+              <MdRecycling />
             <span>Deleted Notes</span>
-          </button>
+          </Link>
         </div>
         <div>
           <div className="w-full h-[1px] bg-gray-300 mt-4"></div>

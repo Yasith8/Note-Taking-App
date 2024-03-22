@@ -3,6 +3,7 @@ import './App.css'
 import Home from './pages/Home'
 import AddNote from './pages/AddNote'
 import UpdateNote from './pages/UpdateNote'
+import DeletedNote from './pages/DeletedNote'
 
 function App() {
  
@@ -12,7 +13,8 @@ function App() {
 <Routes>
   <Route path='/' element={<Home/>}/>
   <Route path='/addnote' element={<AddNote/>}/>
-  <Route path='/addnote' element={<UpdateNote/>}/>
+  <Route path='/updatenote' element={<UpdateNote/>}/>
+  <Route path='/deletednote' element={<DeletedNote/>}/>
 </Routes>
 </BrowserRouter>
   )
