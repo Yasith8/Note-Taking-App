@@ -17,12 +17,12 @@
    <span><img src="https://img.shields.io/badge/React-black?logo=react"></span>
 <span><img src="https://img.shields.io/badge/NodeJS-Yellow?logo=node.js"></span>
 <span><img src="https://img.shields.io/badge/MongoDB-green?logo=mongodb"></span>
-<span><img src="https://img.shields.io/badge/Express-Black?logo=express"></span>
+<span><img src="https://img.shields.io/badge/Express-black?logo=express"></span>
 </p>
 <hr/>
 <p align="center">
-  <a href="#features">Features</a> •
   <a href="#how-to-use">How To Use</a> •
+  <a href="#features">Features</a> •
   <a href="#snap">Snapshots</a> •
   <a href="#note">Special Notes</a> 
 </p>
