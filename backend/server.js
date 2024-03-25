@@ -7,7 +7,7 @@ const cors = require('cors');
 const NoteRoutes = require('./routes/noteRoutes')
 
 
-const { getCategory, deleteCategory } = require('./controller/categoryController')
+const { getCategory, deleteCategory, getOneCategryData } = require('./controller/categoryController')
 
 //initialize express app
 const app = express();
@@ -23,6 +23,7 @@ app.use('/note', NoteRoutes)
 
 
 app.get('/category', getCategory)
+app.get('/category/:id', getOneCategryData)
 app.delete('/category/:id', deleteCategory)
 
 

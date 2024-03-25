@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import AddNote from './pages/AddNote'
 import UpdateNote from './pages/UpdateNote'
 import DeletedNote from './pages/DeletedNote'
+import ViewNote from './pages/ViewNote'
 
 function App() {
  
@@ -13,8 +14,9 @@ function App() {
 <Routes>
   <Route path='/' element={<Home/>}/>
   <Route path='/addnote' element={<AddNote/>}/>
-  <Route path='/updatenote' element={<UpdateNote/>}/>
-  <Route path='/deletednote' element={<DeletedNote/>}/>
+  <Route path='/updatenote/:id' element={<UpdateNote/>}/>
+  <Route path='/deletednote/:id' element={<DeletedNote/>}/>
+  <Route path='/viewnote/:id' element={<ViewNote/>}/>
 </Routes>
 </BrowserRouter>
   )

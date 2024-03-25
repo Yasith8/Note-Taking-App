@@ -1,15 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SideBar from '../components/SideBar'
 import { IoIosSearch } from "react-icons/io";
 import Card from '../components/Card';
 import AddButton from '../components/AddButton';
 import Loader from '../components/Loader';
+import axios from 'axios'
 
 
 
 function Home() {
 
-  const df=[1,2,3,4,5,6,7,8,9,10]
+  const [notes,setNotes]=useState([]);
+  const [loading,setLoading]=useState(false);
+
+  useEffect(()=>{
+    setLoading(true)
+    axios.get('http://localhost:3000/note')
+    .then((res)=>{
+      setNotes(res.data.data);
+      setLoading(false)
+      console.log(res.data)
+    })
+    .catch((err)=>
+    console.log(err)
+    )
+  },[])
+
+
+  
   return (
     <div className='flex p-5 h-full max-h-fit bg-slate-100'>
       <SideBar/>
@@ -27,15 +45,17 @@ function Home() {
             </select>
          </div>
 
-          <div class="grid grid-flow-row-dense sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-3 pl-4">
-            {df.map(()=>(
-              <Card/>
+          {loading?(<Loader/>):(
 
-            ))}
+            <div class="grid grid-flow-row-dense sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-3 pl-4">
+            {notes.map((item)=>(
+              <Card key={item._id} data={item}/>
+              ))}
 
           </div>
+              )}
           <AddButton/>
-          <Loader/>
+         
         </div>
     </div>
   )
