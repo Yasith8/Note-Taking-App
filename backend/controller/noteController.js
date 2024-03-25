@@ -96,6 +96,28 @@ const updateNote = async(req, res) => {
     }
 }
 
+
+//soft delete
+const softDeleteNote = async(req, res) => {
+    try {
+        const { id } = req.params;
+
+        const note = await Note.findById(id);
+
+        if (!note) {
+            return res.send("No such note found!").status(400)
+        } else {
+            note.isActive = !note.isActive;
+            await note.save()
+            return res.send("Delete Note Completed Successfully!").status(400)
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+
+//hard delete
 const deleteNote = async(req, res) => {
     try {
         const { id } = req.params;
@@ -114,4 +136,4 @@ const deleteNote = async(req, res) => {
 }
 
 //export the functions
-module.exports = { getAllNoteData, getOneNoteData, addNewNote, updateNote, deleteNote }
+module.exports = { getAllNoteData, getOneNoteData, addNewNote, updateNote, deleteNote, softDeleteNote }

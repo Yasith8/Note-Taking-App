@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { getAllNoteData, getOneNoteData, addNewNote, updateNote, deleteNote } = require('../controller/noteController.js');
+const { getAllNoteData, getOneNoteData, addNewNote, updateNote, deleteNote, softDeleteNote } = require('../controller/noteController.js');
 
 
 
@@ -18,7 +18,10 @@ router.post('/', addNewNote)
 //update the exsist note
 router.put('/:id', updateNote)
 
-//delete the exsist note
+//soft delete to exsist note
+router.put('/:id', softDeleteNote)
+
+//hard delete the exsist note
 router.delete('/:id', deleteNote)
 
 

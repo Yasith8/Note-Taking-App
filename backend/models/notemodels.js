@@ -23,6 +23,10 @@ const noteSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'catrgories',
         require: true
+    },
+    isActive: {
+        type: Boolean,
+        default: true
     }
 }, { timestamps: true });
 

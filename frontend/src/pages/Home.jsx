@@ -3,6 +3,7 @@ import SideBar from '../components/SideBar'
 import { IoIosSearch } from "react-icons/io";
 import Card from '../components/Card';
 import AddButton from '../components/AddButton';
+import Loader from '../components/Loader';
 
 
 
@@ -34,6 +35,7 @@ function Home() {
 
           </div>
           <AddButton/>
+          <Loader/>
         </div>
     </div>
   )
