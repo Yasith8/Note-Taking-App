@@ -14,7 +14,7 @@
 <span><img src="https://img.shields.io/badge/MongoDB-green?logo=mongodb"></span>
 <span><img src="https://img.shields.io/badge/NodeJS-Yellow?logo=node.js"></span>
 <span><img src="https://img.shields.io/badge/Express-black?logo=express"></span>
-    <span><img src="https://img.shields.io/badge/CSS-black?logo=css3"></span>
+    <span><img src="https://img.shields.io/badge/CSS-blue?logo=css3"></span>
   <span><img src="https://img.shields.io/badge/Tailwindcss-white?logo=tailwindcss"></span>
 </p>
 <hr/>
