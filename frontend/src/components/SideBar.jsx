@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 
 function SideBar() {
   return (
-    <div className="w-1/6 bg-slate-100 mx-2">
+    <div className="hidden sm:block bg-slate-100 md:w-1/6 md:mx-2">
       <div className="flex items-center ml-5">
         <img src={img} alt="" className="w-[10rem]" />
       </div>

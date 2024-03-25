@@ -9,7 +9,7 @@ import { MdDeleteOutline } from "react-icons/md";
 
 function Card() {
   return (
-    <div className='sm:w-[10rem] md:w-[18rem] lg:w-[22rem] h-[11rem] bg-slate-200 rounded-2xl p-3 flex flex-col justify-between mt-4'>
+    <div className='w-[24.5rem] md:w-[18rem] lg:w-[22rem] h-[11rem] bg-slate-200 rounded-2xl p-3 flex flex-col justify-between mt-4'>
       <div className='flex justify-end'>
         <div className='border-[1px] border-slate-400 text-slate-600 text-[10px] font-semibold px-2 rounded-full'>Home</div>
       </div>
