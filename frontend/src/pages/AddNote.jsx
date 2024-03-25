@@ -5,9 +5,9 @@ import '../App.css'
 
 function AddNote() {
   return (
-    <div className='flex p-5 h-screen bg-slate-100'>
+    <div className='h-screen max-h-fit  flex md:p-5 md:h-screen bg-slate-100'>
       <SideBar/>
-      <div className='w-5/6 bg-white rounded-2xl pl-2'>
+      <div className='w-screen m-2 md:w-5/6 bg-white rounded-2xl pl-2'>
         <BackButton/>
 
         <div className='m-6 border-2 p-5 border-black rounded-2xl min-h-[30rem] max-h-fit'>
@@ -19,7 +19,7 @@ function AddNote() {
           <label htmlFor="">Title</label>
               </td>
               <td>
-                <input type="text"  className='p-3 border-2 border-slate-400 min-w-[25rem] rounded-lg'/>
+                <input type="text"  className='p-3 border-2 border-slate-400 md:min-w-[25rem] rounded-lg'/>
               </td>
             </tr>
             <tr>
@@ -27,7 +27,7 @@ function AddNote() {
           <label htmlFor="">Content</label>
               </td>
               <td>
-                <textarea id="" cols="30" rows="5" className='p-3 border-2 border-slate-400 min-w-[25rem] rounded-lg'></textarea>
+                <textarea id="" cols="30" rows="5" className='p-3 border-2 border-slate-400 w-[11rem] md:min-w-[25rem] rounded-lg'></textarea>
               </td>
             </tr>
             <tr>
@@ -35,7 +35,7 @@ function AddNote() {
           <label htmlFor="">Category</label>
               </td>
               <td>
-                <select name="" id="" className='w-[10rem] h-[2rem] border-2 border-slate-400'>
+                <select name="" id="" className='w-[6rem] md:w-[10rem] h-[2rem] border-2 border-slate-400'>
                   <option value="">Home</option>
                   <option value="">Home</option>
                 </select>
@@ -51,8 +51,8 @@ function AddNote() {
               </td>
             </tr>
             <tr className='flex justify-end mt-[3rem]'>
-              <td><button type='reset' className='w-[10rem] h-[3rem] bg-transparent rounded-lg font-bold border-2 border-black text-black  hover:bg-black hover:text-white'>Clear</button></td>
-              <td><button type='submit' className='w-[10rem] h-[3rem] bg-black rounded-lg font-bold border-2 border-black text-white '>Submit</button></td>
+              <td><button type='reset' className='w-[5rem] md:w-[10rem] h-[3rem] bg-transparent rounded-lg font-bold border-2 border-black text-black  hover:bg-black hover:text-white'>Clear</button></td>
+              <td><button type='submit' className='w-[5rem] md:w-[10rem] h-[3rem] bg-black rounded-lg font-bold border-2 border-black text-white '>Submit</button></td>
             </tr>
           </table>
           </form>

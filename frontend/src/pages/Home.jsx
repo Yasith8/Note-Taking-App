@@ -2,6 +2,7 @@ import React from 'react'
 import SideBar from '../components/SideBar'
 import { IoIosSearch } from "react-icons/io";
 import Card from '../components/Card';
+import AddButton from '../components/AddButton';
 
 
 
@@ -31,9 +32,8 @@ function Home() {
 
             ))}
 
-          
-
           </div>
+          <AddButton/>
         </div>
     </div>
   )
