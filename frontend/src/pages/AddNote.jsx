@@ -1,9 +1,73 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SideBar from '../components/SideBar'
 import BackButton from '../components/BackButton'
 import '../App.css'
+import axios from 'axios'
 
 function AddNote() {
+
+  const [title,setTitle]=useState('');
+  const [content,setContent]=useState('');
+  const[categorySelect,setCategorySelect]=useState('');
+  const[categoryInput,setCategoryInput]=useState('');
+  const [color,setColor]=useState('#000000');
+
+  const [categoryList,setCategoryList]=useState([])
+
+  const[loading,setLoading]=useState(false);
+
+  useEffect(()=>{
+    setLoading(true)
+    axios.get('http://localhost:3000/category')
+    .then((res)=>{
+      setLoading(false)
+      setCategoryList(res.data)
+    })
+    .catch((err)=>{
+      setLoading(false)
+      alert("This system has following errors\n",err)
+    })
+  },[])
+
+
+  const submitHandler=(e)=>{
+    e.preventDefault();
+    if(!title||!content){
+      return alert('Please fill out all fields')
+    }else{
+      let categoryValue;
+
+      if(categorySelect=="" || categorySelect=="none"){
+        categoryValue=categoryInput;
+      }
+      else if(categoryInput==""){
+        categoryValue=categorySelect;
+      }
+
+      const newNote={
+        title:title,
+        content:content,
+        category:categoryValue,
+        color:color
+      }
+
+      axios.post('http://localhost:3000/note',newNote)
+      .then((res)=>{
+        alert("Note Added Successfully")
+        setTitle("");
+        setContent("");
+        setColor("#ffffff");
+        setCategoryInput("");
+        setCategorySelect("");
+      })
+
+      .catch((err)=>{
+        alert("system has following errors\n",err)
+      })
+      
+    }
+
+  }
   return (
     <div className='h-screen max-h-fit  flex md:p-5 md:h-screen bg-slate-100'>
       <SideBar/>
@@ -11,7 +75,7 @@ function AddNote() {
         <BackButton/>
 
         <div className='m-6 border-2 p-5 border-black rounded-2xl min-h-[30rem] max-h-fit'>
-          <form>
+          <form onSubmit={submitHandler}>
 
           <table className='flex flex-col'>
             <tr>
@@ -19,7 +83,7 @@ function AddNote() {
           <label htmlFor="">Title</label>
               </td>
               <td>
-                <input type="text"  className='p-3 border-2 border-slate-400 md:min-w-[25rem] rounded-lg'/>
+                <input type="text" value={title} onChange={(e)=>setTitle(e.target.value)}  className='p-3 border-2 border-slate-400 md:min-w-[25rem] rounded-lg'/>
               </td>
             </tr>
             <tr>
@@ -27,7 +91,7 @@ function AddNote() {
           <label htmlFor="">Content</label>
               </td>
               <td>
-                <textarea id="" cols="30" rows="5" className='p-3 border-2 border-slate-400 w-[11rem] md:min-w-[25rem] rounded-lg'></textarea>
+                <textarea id="" cols="30" rows="5" value={content} onChange={(e)=>setContent(e.target.value)} className='p-3 border-2 border-slate-400 w-[11rem] md:min-w-[25rem] rounded-lg'></textarea>
               </td>
             </tr>
             <tr>
@@ -35,19 +99,24 @@ function AddNote() {
           <label htmlFor="">Category</label>
               </td>
               <td>
-                <select name="" id="" className='w-[6rem] md:w-[10rem] h-[2rem] border-2 border-slate-400'>
-                  <option value="">Home</option>
-                  <option value="">Home</option>
+                <select name="" id="" className='w-[6rem] md:w-[10rem] h-[2rem] border-2 border-slate-400' onChange={(e)=>setCategorySelect(e.target.value)}>
+                  <option value="" selected disabled>Select Category...</option>
+                  <option value="none" selected disabled>--none--</option>
+                  {categoryList.map((item)=>(
+                    <option key={item._id} value={categorySelect} >{item.name}</option>
+                  ))}
                 </select>
+                <input type="text" value={categoryInput} onChange={(e)=>setCategoryInput(e.target.value)} className='border-2 border-slate-400' placeholder='Create new category...'/>
               </td>
+              <td>If you need to create new, add --none-- to dropdown menu</td>
             </tr>
             <tr>
               <td className="left-tr">
           <label htmlFor="">Color</label>
               </td>
               <td className='w-[25rem] flex justify-between items-center'>
-                <input type='color' className=''/>
-                <h1>#ffffff</h1>
+                <input type='color' value={color} onChange={(e)=>{setColor(e.target.value)}} className=''/>
+                <h1>{color}</h1>
               </td>
             </tr>
             <tr className='flex justify-end mt-[3rem]'>
