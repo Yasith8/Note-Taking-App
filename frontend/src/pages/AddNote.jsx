@@ -8,8 +8,8 @@ function AddNote() {
 
   const [title,setTitle]=useState('');
   const [content,setContent]=useState('');
-  const[categorySelect,setCategorySelect]=useState('');
-  const[categoryInput,setCategoryInput]=useState('');
+  const[category,setCategory]=useState('');
+
   const [color,setColor]=useState('#000000');
 
   const [categoryList,setCategoryList]=useState([])
@@ -29,36 +29,29 @@ function AddNote() {
     })
   },[])
 
-
+console.log(color)
   const submitHandler=(e)=>{
     e.preventDefault();
     if(!title||!content){
       return alert('Please fill out all fields')
     }else{
-      let categoryValue;
-
-      if(categorySelect=="" || categorySelect=="none"){
-        categoryValue=categoryInput;
-      }
-      else if(categoryInput==""){
-        categoryValue=categorySelect;
-      }
+      
 
       const newNote={
         title:title,
         content:content,
-        category:categoryValue,
+        category:category,
         color:color
       }
 
+
       axios.post('http://localhost:3000/note',newNote)
-      .then((res)=>{
+      .then(()=>{
         alert("Note Added Successfully")
         setTitle("");
         setContent("");
         setColor("#ffffff");
-        setCategoryInput("");
-        setCategorySelect("");
+        setCategory("");
       })
 
       .catch((err)=>{
@@ -99,16 +92,13 @@ function AddNote() {
           <label htmlFor="">Category</label>
               </td>
               <td>
-                <select name="" id="" className='w-[6rem] md:w-[10rem] h-[2rem] border-2 border-slate-400' onChange={(e)=>setCategorySelect(e.target.value)}>
-                  <option value="" selected disabled>Select Category...</option>
-                  <option value="none" selected disabled>--none--</option>
+                  <input type="text" list='categorylist' value={category} onChange={(e)=>setCategory(e.target.value)} className='border-2 border-slate-400' placeholder='Create new category...'/>
+                <datalist name="" id="categorylist" className='w-[6rem] md:w-[10rem] h-[2rem] border-2 border-slate-400'>
                   {categoryList.map((item)=>(
-                    <option key={item._id} value={categorySelect} >{item.name}</option>
+                    <option key={item._id} value={item.name} >{item.name}</option>
                   ))}
-                </select>
-                <input type="text" value={categoryInput} onChange={(e)=>setCategoryInput(e.target.value)} className='border-2 border-slate-400' placeholder='Create new category...'/>
+                </datalist>
               </td>
-              <td>If you need to create new, add --none-- to dropdown menu</td>
             </tr>
             <tr>
               <td className="left-tr">
