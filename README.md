@@ -41,3 +41,23 @@ $ npm install
 # Run the app
 $ npm start
 ```
+
+## Features
+- CRUD Operations 
+  - User can Create new Note
+  - User can Update the note
+  - User can Delete the note
+  - User can View the note
+  
+- Search Notes
+  - User can find note quickly
+  
+- Shaduling DB Proccess
+  - When user delete the notes, it save in recyle bin and user can restore that note. 
+  - After 1 day of deletion, that soft deleted data deleted permenently.
+
+- Grouping Notes as Category
+  - User can categorised notes
+
+- User can select prefered color for note
+
