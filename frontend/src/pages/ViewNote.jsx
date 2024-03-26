@@ -17,17 +17,27 @@ function ViewNote() {
     setLoading(true)
     axios.get(`http://localhost:3000/note/${id}`)
     .then((res)=>{
-      setNotes(res.data.data);
+      setNotes(res.data);
       setLoading(false)
       setCategoryId(res.data.category)
-      axios.get(`http://localhost:3000/note/${categoryId}`)
-      .then((res)=>setCategory(res.data))
-      .catch((err)=>console.log(err))
+      console.log(categoryId)
+      
     })
     .catch((err)=>
     console.log(err)
     )
-  },[])
+  },[id])
+
+
+  useEffect(()=>{
+    axios.get(`http://localhost:3000/category/${categoryId}`)
+      .then((res)=>{
+        setCategory(res.data)
+        console.log(category)
+      }
+      )
+      .catch((err)=>console.log(err))
+  },[categoryId])
 
   return (
     <div className='h-screen max-h-fit  flex md:p-5 md:h-screen bg-slate-100'>
@@ -35,36 +45,28 @@ function ViewNote() {
       <div className='w-screen m-2 md:w-5/6 bg-white rounded-2xl pl-2'>
         <BackButton/>
 
-        <div className='m-6 border-2 p-5 border-black rounded-2xl min-h-[30rem] max-h-fit'>
-          <form>
+        <div className='m-6 border-2 p-5 mt-[5rem] border-black rounded-2xl min-h-[20rem] max-h-fit'>
+          
+        <div className='flex items-center justify-end '>
+            <div className='p-1 border-2 border-black min-w-[5rem] flex items-center justify-center font-bold rounded-lg'>{category.name}</div>
+          </div>
+          
+          <div className='flex items-center justify-center'>
+            <div className='text-[3rem] font-bold'>{notes.title}</div>
+          </div>
 
-          <table className='flex flex-col'>
-            <tr>
-              <td className="left-tr">
-          <label htmlFor="">Title</label>
-              </td>
-              <td>
-               {notes.title}
-              </td>
-            </tr>
-            <tr>
-              <td className="left-tr">
-          <label htmlFor="">Content</label>
-              </td>
-              <td>
-                {notes.content}
-              </td>
-            </tr>
-            <tr>
-              <td className="left-tr">
-          <label htmlFor="">Category</label>
-              </td>
-              <td>
-                {category}
-              </td>
-            </tr>
-          </table>
-          </form>
+          <div className='flex items-center justify-center mt-5'>
+            <div>{notes.content}</div>
+          </div>
+
+          
+
+          <div className='flex items-center justify-center'>
+            <div className='w-[20rem] bg-green-500 h-7 rounded-full p-1 flex justify-center items-center font-semibold mt-5'>Theame Color</div>
+          </div>
+
+
+          
         </div>
         </div>
     </div>
