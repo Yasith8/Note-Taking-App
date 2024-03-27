@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { getAllNoteData, getOneNoteData, addNewNote, updateNote, deleteNote, softDeleteNote, getActiveNoteData, getInActiveNoteData } = require('../controller/noteController.js');
+const { getAllNoteData, getOneNoteData, addNewNote, updateNote, deleteNote, softDeleteNote, getActiveNoteData, getInActiveNoteData, getDynamicNoteData, DeleteInActiveNotes } = require('../controller/noteController.js');
 
 
 
@@ -15,8 +15,11 @@ router.get('/active', getActiveNoteData)
 //get all inactive note data
 router.get('/inactive', getInActiveNoteData)
 
+
+
 //routes for get specific Data
 router.get('/:id', getOneNoteData)
+
 
 //routes for add new note
 router.post('/', addNewNote)

@@ -7,23 +7,31 @@ import { TbRestore } from "react-icons/tb";
 import GetCategory from './GetCategory';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
+import Loader from './Loader';
 
 function DeletedCard({data}) {
     const [category,setCategory]=useState([])
+    const [loading,setLoading]=useState(false);
 
   useEffect(()=>{
-      axios
-      .get(`http://localhost:3000/category/${data.category}`)
-      .then((res)=>{
-          setCategory(res.data)
-          console.log(category)
-      })
-      .catch((err)=>{
+    setLoading(true)
+    axios
+    .get(`http://localhost:3000/category/${data.category}`)
+    .then((res)=>{
+      setLoading(false)
+      setCategory(res.data)
+      console.log(category)
+    })
+    .catch((err)=>{
+        setLoading(false)
           console.log(err)
       })
   },[])
   return (
-    <div key={data._id} className='w-[24.5rem] md:w-[18rem] lg:w-[22rem] h-[11rem] bg-slate-200 rounded-2xl p-3 flex flex-col justify-between mt-4'>
+    <div>
+      {loading?(<Loader/>):(
+
+        <div key={data._id} className='w-[24.5rem] md:w-[18rem] lg:w-[22rem] h-[11rem] bg-slate-200 rounded-2xl p-3 flex flex-col justify-between mt-4'>
       <div className='flex justify-end'>
         <div className='border-[1px] border-slate-400 text-slate-600 text-[10px] font-semibold px-2 rounded-full'>{category.name}</div>
       </div>
@@ -37,6 +45,8 @@ function DeletedCard({data}) {
             <Link to={`/deletednote/${data._id}`}><div className='p-2 bg-orange-300 rounded-full'><TbRestore/></div></Link>
         </div>
         </div>
+    </div>
+    )}
     </div>
   )
 }

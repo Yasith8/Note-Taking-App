@@ -8,6 +8,7 @@ const NoteRoutes = require('./routes/noteRoutes')
 
 
 const { getCategory, deleteCategory, getOneCategryData } = require('./controller/categoryController')
+const { getDynamicNoteData, DeleteInActiveNotes, AutoHardDeleteNotes } = require('./controller/noteController')
 
 //initialize express app
 const app = express();
@@ -22,6 +23,9 @@ app.use(cors());
 app.use('/note', NoteRoutes)
 
 
+//manually create routes because of casting issues
+app.get('/search', getDynamicNoteData)
+app.delete('/remove', DeleteInActiveNotes)
 app.get('/category', getCategory)
 app.get('/category/:id', getOneCategryData)
 app.delete('/category/:id', deleteCategory)
@@ -37,6 +41,10 @@ mongoose.connect(URL)
     .then(() => {
         console.log("Connected with MongoDB");
 
+        //call auto deletion function
+        AutoHardDeleteNotes()
+
+        //app listning port
         app.listen(PORT, () => {
             console.log("Server is running on port " + PORT);
         })

@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const Note = require("../models/notemodels")
 const Category = require("../models/category")
 
+
 //get all notes from db
 const getAllNoteData = async(req, res) => {
     try {
@@ -54,6 +55,28 @@ const getInActiveNoteData = async(req, res) => {
     }
 };
 
+//get dynamicly search data
+const getDynamicNoteData = async(req, res) => {
+    try {
+        const searchTerm = req.query.term;
+        const notes = await Note.find({
+            $and: [{
+
+                    $or: [
+                        { title: { $regex: searchTerm, $options: 'i' } },
+                        { content: { $regex: searchTerm, $options: 'i' } }
+                    ]
+                },
+                { isActive: true }
+            ]
+        });
+        res.json(notes);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+
+}
 
 
 //add new note
@@ -179,5 +202,38 @@ const deleteNote = async(req, res) => {
     }
 }
 
+
+//hard delete for all inactive data
+
+const DeleteInActiveNotes = async(req, res) => {
+    try {
+        const result = await Note.deleteMany({ isActive: false });
+
+        if (result.deletedCount > 0) {
+            res.json({ message: 'Inactive notes deleted successfully' });
+        } else {
+            res.status(404).json({ message: 'No inactive notes found' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+
+}
+
+
+const AutoHardDeleteNotes = () => {
+    cron.schedule('0 0 * * *', async() => {
+        try {
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+            await Note.deleteMany({ isActive: false, updatedAt: { $lt: thirtyDaysAgo } });
+            console.log('Inactive documents older than 30 days deleted successfully.');
+        } catch (error) {
+            console.error('Error occurred during document deletion:', error);
+        }
+    });
+}
+
 //export the functions
-module.exports = { getAllNoteData, getOneNoteData, addNewNote, updateNote, deleteNote, softDeleteNote, getActiveNoteData, getInActiveNoteData }
+module.exports = { getAllNoteData, getOneNoteData, addNewNote, updateNote, deleteNote, softDeleteNote, getActiveNoteData, getInActiveNoteData, getDynamicNoteData, DeleteInActiveNotes, AutoHardDeleteNotes }

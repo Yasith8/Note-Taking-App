@@ -13,6 +13,9 @@ function Home() {
   const [notes,setNotes]=useState([]);
   const [loading,setLoading]=useState(false);
 
+  const [searchTerm, setSearchTerm] = useState('');
+ 
+
   useEffect(()=>{
     setLoading(true)
     axios.get('http://localhost:3000/note/active')
@@ -26,6 +29,24 @@ function Home() {
     )
   },[])
 
+  const handleSearch = () => {
+    axios.get(`http://localhost:3000/search?term=${searchTerm}`)
+      .then((res) => {
+     
+        if (Array.isArray(res.data)) {
+          
+          setNotes(res.data);
+        } else {
+          
+          console.log("Unexpected response format:", res.data);
+        }
+      })
+      .catch((err) => {
+      
+        console.log("Error occurred during search:", err);
+      });
+  };
+
 
   
   return (
@@ -34,7 +55,7 @@ function Home() {
       <div className='w-full md:w-5/6 bg-white rounded-2xl pl-2 pb-5'>
       <div className='flex items-center justify-between'>
           <div className='w-1/2 m-5 rounded-full p-2 bg-slate-100 flex items-center justify-between'>
-            <input type="text" id='search' className='w-2/3 p-1 bg-slate-100 focus:outline-none' placeholder='Search anything'/>
+            <input type="text" id='search' className='w-2/3 p-1 bg-slate-100 focus:outline-none' placeholder='Search anything' value={searchTerm} onChange={(e) => {setSearchTerm(e.target.value);handleSearch()}}/>
             <div className='p-3 bg-white rounded-full'>
             <IoIosSearch/>
             </div>

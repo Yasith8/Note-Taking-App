@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import SideBar from '../components/SideBar'
-import Card from '../components/Card';
-import { IoIosSearch } from 'react-icons/io';
-import AddButton from '../components/AddButton';
+import { TiDelete } from "react-icons/ti";
 import axios  from 'axios';
 import Loader from '../components/Loader';
 import DeletedCard from '../components/DeletedCard';
+import { Link } from 'react-router-dom';
 
 
 function DeletedNotesList() {
@@ -29,17 +28,12 @@ function DeletedNotesList() {
         <div className='flex p-5 h-full max-h-fit bg-slate-100'>
         <SideBar/>
         <div className='w-full md:w-5/6 bg-white rounded-2xl pl-2 pb-5'>
-        <div className='flex items-center justify-between'>
-            <div className='w-1/2 m-5 rounded-full p-2 bg-slate-100 flex items-center justify-between'>
-              <input type="text" id='search' className='w-2/3 p-1 bg-slate-100 focus:outline-none' placeholder='Search anything'/>
-              <div className='p-3 bg-white rounded-full'>
-              <IoIosSearch/>
-              </div>
-            </div>
-              <select name="" id="" className='mr-5 sm:hidden p-3 border-2 w-[8rem] text-slate-400 border-slate-400 rounded-full'>
-                <option value="">Home</option>
-                <option value="">Form</option>
-              </select>
+        <div className='flex items-center justify-end'>
+            <Link to='/removenote' className='m-5 rounded-full p-4 bg-red-600 text-white font-bold flex items-center justify-center gap-2'>
+              <TiDelete/>
+              <button>Empty Recycle Bin</button>
+            </Link>
+              
            </div>
   
             {loading?(<Loader/>):(
