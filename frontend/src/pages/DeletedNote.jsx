@@ -1,36 +1,57 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SideBar from '../components/SideBar'
-import { IoIosSearch } from "react-icons/io";
-import Card from '../components/Card';
+import {useParams,useNavigate} from 'react-router-dom'
+import axios from 'axios'
+
+
 
 
 function DeletedNote() {
-  const df=[1,2,3,4,5,6]
+  const {id}=useParams();
+  const [notes,setNotes]=useState({});
+  const [loading,setLoading]=useState(false);
+  const navigate=useNavigate()
+
+  useEffect(()=>{
+    setLoading(true)
+    axios.get(`http://localhost:3000/note/${id}`)
+    .then((res)=>{
+      setNotes(res.data);
+      setLoading(false)
+      console.log(categoryId)
+      
+    })
+    .catch((err)=>
+    console.log(err)
+    )
+  },[id])
+
+  const submitHandler=()=>{
+      axios.put(`http://localhost:3000/note/delete/${id}`)
+      .then(()=>{
+        alert(notes.title+" has been added to recycle bin");
+        navigate('/')
+      })
+      .catch((err)=>{
+        alert("This process has following errors\n"+err)
+      })
+  }
+
+  const backHandler=()=>{
+    navigate("/")
+  }
+
   return (
-    <div className='flex p-5 h-full max-h-fit bg-slate-100'>
-      <SideBar/>
-      <div className='w-full md:w-5/6 bg-white rounded-2xl pl-2 pb-5'>
-      <div className='flex items-center justify-between'>
-          <div className='w-1/2 m-5 rounded-full p-2 bg-slate-100 flex items-center justify-between'>
-            <input type="text" id='search' className='w-2/3 p-1 bg-slate-100 focus:outline-none' placeholder='Search anything'/>
-            <div className='p-3 bg-white rounded-full'>
-            <IoIosSearch/>
-            </div>
-          </div>
-            <select name="" id="" className='mr-5 sm:hidden p-3 border-2 w-[8rem] text-slate-400 border-slate-400 rounded-full'>
-              <option value="">Home</option>
-              <option value="">Form</option>
-            </select>
-         </div>
-
-          <div class="grid grid-flow-row-dense sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-3 pl-4">
-            {df.map(()=>(
-              <Card/>
-
-            ))}
-
-          </div>
+    <div className='flex p-5 h-screen w-screen max-h-fit bg-slate-900'>
+      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-10 min-w-[25rem] w-fit h-[10rem] flex flex-col items-center'>
+        <div className='flex items-center justify-center'>
+          <h1 className='text-[1.3rem] font-bold'>Are you sure to delete {notes.title}?</h1>
         </div>
+        <div className='flex w-[100%] items-center justify-center gap-7 mt-5'>
+          <button className='w-[5rem] md:w-[10rem] h-[3rem] bg-transparent rounded-lg font-bold border-2 border-black text-black' onClick={backHandler}>Cancel</button>
+          <button className='w-[5rem] md:w-[10rem] h-[3rem] bg-red-600 rounded-lg font-bold border-2 border-red-600 text-white' onClick={submitHandler}>Yes</button>
+        </div>
+      </div>
     </div>
   )
 }

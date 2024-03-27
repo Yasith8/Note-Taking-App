@@ -6,6 +6,7 @@ import '../App.css'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 import {useParams} from 'react-router-dom'
+import Loader from '../components/Loader'
 
 function UpdateNote() {
 
@@ -89,7 +90,12 @@ function UpdateNote() {
 
   }
   return (
-    <div className='h-screen max-h-fit  flex md:p-5 md:h-screen bg-slate-100'>
+    <div>
+      {loading?(<Loader/>):(
+
+        
+        
+        <div className='h-screen max-h-fit  flex md:p-5 md:h-screen bg-slate-100'>
       <SideBar/>
       <div className='w-screen m-2 md:w-5/6 bg-white rounded-2xl pl-2'>
         <BackButton/>
@@ -138,12 +144,15 @@ function UpdateNote() {
             </tr>
             <tr className='flex justify-end mt-[3rem]'>
               <td><button type='reset' className='w-[5rem] md:w-[10rem] h-[3rem] bg-transparent rounded-lg font-bold border-2 border-black text-black  hover:bg-black hover:text-white'>Clear</button></td>
-              <td><button type='submit' className='w-[5rem] md:w-[10rem] h-[3rem] bg-black rounded-lg font-bold border-2 border-black text-white '>Submit</button></td>
+              <td><button type='submit' className='w-[5rem] md:w-[10rem] h-[3rem] bg-black rounded-lg font-bold border-2 border-black text-white '>Update</button></td>
             </tr>
           </table>
           </form>
         </div>
         </div>
+    </div>
+)}
+
     </div>
   )
 }

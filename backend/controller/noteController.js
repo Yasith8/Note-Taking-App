@@ -19,6 +19,42 @@ const getAllNoteData = async(req, res) => {
     }
 }
 
+//get all active data
+const getActiveNoteData = async(req, res) => {
+    try {
+        // Find all notes where isActive is true and sort by createdAt date
+        const notes = await Note.find({ isActive: true }).sort({ createdAt: -1 });
+
+        // Return success response and pass data and number of notes using JSON format
+        return res.status(200).json({
+            count: notes.length,
+            data: notes
+        });
+    } catch (error) {
+        // Error handling
+        return res.status(500).json({ message: error.message });
+    }
+};
+
+
+//get inactive data
+const getInActiveNoteData = async(req, res) => {
+    try {
+        // Find all notes where isActive is true and sort by createdAt date
+        const notes = await Note.find({ isActive: false }).sort({ createdAt: -1 });
+
+        // Return success response and pass data and number of notes using JSON format
+        return res.status(200).json({
+            count: notes.length,
+            data: notes
+        });
+    } catch (error) {
+        // Error handling
+        return res.status(500).json({ message: error.message });
+    }
+};
+
+
 
 //add new note
 const addNewNote = async(req, res) => {
@@ -144,4 +180,4 @@ const deleteNote = async(req, res) => {
 }
 
 //export the functions
-module.exports = { getAllNoteData, getOneNoteData, addNewNote, updateNote, deleteNote, softDeleteNote }
+module.exports = { getAllNoteData, getOneNoteData, addNewNote, updateNote, deleteNote, softDeleteNote, getActiveNoteData, getInActiveNoteData }

@@ -15,7 +15,7 @@ function Home() {
 
   useEffect(()=>{
     setLoading(true)
-    axios.get('http://localhost:3000/note')
+    axios.get('http://localhost:3000/note/active')
     .then((res)=>{
       setNotes(res.data.data);
       setLoading(false)

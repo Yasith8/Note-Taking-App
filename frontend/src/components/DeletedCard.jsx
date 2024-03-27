@@ -2,17 +2,14 @@ import React, { useEffect, useState } from 'react'
 import '../App.css'
 
 import { FaEye } from "react-icons/fa";
-import { FiEdit } from "react-icons/fi";
-import { MdDeleteOutline } from "react-icons/md";
+import { TbRestore } from "react-icons/tb";
+
 import GetCategory from './GetCategory';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 
-
-
-function Card({data}) {
-
-  const [category,setCategory]=useState([])
+function DeletedCard({data}) {
+    const [category,setCategory]=useState([])
 
   useEffect(()=>{
       axios
@@ -25,8 +22,6 @@ function Card({data}) {
           console.log(err)
       })
   },[])
-  
-  
   return (
     <div key={data._id} className='w-[24.5rem] md:w-[18rem] lg:w-[22rem] h-[11rem] bg-slate-200 rounded-2xl p-3 flex flex-col justify-between mt-4'>
       <div className='flex justify-end'>
@@ -38,13 +33,12 @@ function Card({data}) {
         <div className='flex justify-between items-end'>
       <div className={`p-2 w-[5rem] h-3 rounded-s-lg rounded-sm `} style={{backgroundColor:data.color}}></div>
         <div className='flex gap-3 justify-end'>
-            <Link to={`/viewnote/${data._id}`}><div className='p-2 bg-green-300 rounded-full'><FaEye/></div>   </Link>
-            <Link to={`/updatenote/${data._id}`}><div className='p-2 bg-orange-300 rounded-full'><FiEdit/></div>  </Link>
-            <Link to={`/deletednote/${data._id}`}><div className='p-2 bg-red-300 rounded-full'><MdDeleteOutline/></div></Link>
+            <Link to={`/viewnote/${data._id}`}><div className='p-2 bg-green-300 rounded-full'><FaEye/></div></Link>
+            <Link to={`/deletednote/${data._id}`}><div className='p-2 bg-orange-300 rounded-full'><TbRestore/></div></Link>
         </div>
         </div>
     </div>
   )
 }
 
-export default Card
+export default DeletedCard
