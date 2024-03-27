@@ -39,8 +39,8 @@ function Card({data}) {
       <div className={`p-2 w-[5rem] h-3 rounded-s-lg rounded-sm `} style={{backgroundColor:data.color}}></div>
         <div className='flex gap-3 justify-end'>
             <Link to={`/viewnote/${data._id}`}><div className='p-2 bg-green-300 rounded-full'><FaEye/></div>   </Link>
-            <Link to={`/updatewnote/${data._id}`}><div className='p-2 bg-orange-300 rounded-full'><FiEdit/></div>  </Link>
-            <Link to={`/deletewnote/${data._id}`}><div className='p-2 bg-red-300 rounded-full'><MdDeleteOutline/></div></Link>
+            <Link to={`/updatenote/${data._id}`}><div className='p-2 bg-orange-300 rounded-full'><FiEdit/></div>  </Link>
+            <Link to={`/deletenote/${data._id}`}><div className='p-2 bg-red-300 rounded-full'><MdDeleteOutline/></div></Link>
         </div>
         </div>
     </div>

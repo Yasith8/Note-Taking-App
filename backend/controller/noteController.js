@@ -85,9 +85,16 @@ const updateNote = async(req, res) => {
 
         const { id } = req.params;
 
-        const note = await Note.findByIdAndUpdate(id, req.body);
+        let categoryObj = await Category.findOne({ name: req.body.category });
 
-        if (!note) {
+        if (!categoryObj) {
+            categoryObj = new Category({ name: category });
+            await categoryObj.save();
+        }
+
+        const updatedNote = await Note.findByIdAndUpdate(id, {...req.body, category: categoryObj }, { new: true });
+
+        if (!updatedNote) {
             return res.send("No such note found!").status(400)
         } else {
             return res.send("Update Completed Successfully!").status(400)
