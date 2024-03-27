@@ -3,6 +3,7 @@ import SideBar from '../components/SideBar'
 import BackButton from '../components/BackButton'
 import '../App.css'
 import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 function AddNote() {
 
@@ -15,6 +16,8 @@ function AddNote() {
   const [categoryList,setCategoryList]=useState([])
 
   const[loading,setLoading]=useState(false);
+
+  const navigate=useNavigate();
 
   useEffect(()=>{
     setLoading(true)
@@ -29,7 +32,8 @@ function AddNote() {
     })
   },[])
 
-console.log(color)
+  
+  
   const submitHandler=(e)=>{
     e.preventDefault();
     if(!title||!content){
@@ -48,6 +52,7 @@ console.log(color)
       axios.post('http://localhost:3000/note',newNote)
       .then(()=>{
         alert("Note Added Successfully")
+        navigate('/')
         setTitle("");
         setContent("");
         setColor("#ffffff");

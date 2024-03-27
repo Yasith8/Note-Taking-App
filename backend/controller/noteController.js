@@ -40,7 +40,8 @@ const addNewNote = async(req, res) => {
         const newNote = {
             title: req.body.title,
             content: req.body.content,
-            category: categoryObj.id
+            category: categoryObj.id,
+            color: req.body.color
         }
 
         const note = await Note.create(newNote)

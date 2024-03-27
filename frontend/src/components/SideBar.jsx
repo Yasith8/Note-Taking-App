@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import img from "../assets/logo.png";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { IoSearchCircleOutline } from "react-icons/io5";
@@ -8,8 +8,23 @@ import { PiFolderNotchOpenLight } from "react-icons/pi";
 import { HiPlusSm } from "react-icons/hi";
 import { RiLifebuoyLine } from "react-icons/ri";
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 function SideBar() {
+  const [category,setCategory]=useState([])
+  const [loading,setLoading]=useState(false);
+
+  useEffect(()=>{
+    setLoading(true)
+    axios.get('http://localhost:3000/category')
+    .then((res)=>{
+      setLoading(false)
+      setCategory(res.data)
+    })
+    .catch((err)=>{
+      alert("Error Occured: "+err)
+    })
+  },[])
   return (
     <div className="hidden sm:block bg-slate-100 md:w-1/6 md:mx-2">
       <div className="flex items-center ml-5">
@@ -43,14 +58,15 @@ function SideBar() {
                 <HiPlusSm />
               </button>
             </div>
-            {/* static items set start*/}
-            <button className="flex items-center gap-4 text-gray-500 bg-slate-100  p-1 pl-[3.2rem] mx-4 justify-start rounded-md">
-              Home
+
+            {loading?(<div>Loading...</div>):(
+              category.map((item)=>(
+                <button key={item._id} className="flex items-center gap-4 text-gray-500 bg-slate-100  p-1 pl-[3.2rem] mx-4 justify-start rounded-md">
+              {item.name}
             </button>
-            <button className="flex items-center gap-4 text-gray-500 bg-slate-100  p-1 pl-[3.2rem] mx-4 justify-start rounded-md">
-              Todo
-            </button>
-            {/* static items set end */}
+                ))
+
+            )}
           </div>
         </div>
         <div>

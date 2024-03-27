@@ -61,9 +61,10 @@ function ViewNote() {
 
           
 
-          <div className='flex items-center justify-center'>
-            <div className={`w-[20rem] bg-[${notes.color}] h-7 rounded-full p-1 flex justify-center items-center font-semibold mt-5`}>Theame Color</div>
+          <div className='flex items-center justify-center '>
+            <div className={`w-[20rem] bg-[${notes.color}] h-7 rounded-full p-1 flex justify-center items-center font-semibold mt-5`} style={{backgroundColor:notes.color}}>Theme Color</div>
           </div>
+          
 
 
           

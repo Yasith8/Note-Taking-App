@@ -36,7 +36,7 @@ function Card({data}) {
         <div className='div-text'>{data.content}
         </div>
         <div className='flex justify-between items-end'>
-      <div className={`p-2 w-[5rem] h-3 rounded-s-lg rounded-sm bg-[${data.color}]`}></div>
+      <div className={`p-2 w-[5rem] h-3 rounded-s-lg rounded-sm `} style={{backgroundColor:data.color}}></div>
         <div className='flex gap-3 justify-end'>
             <Link to={`/viewnote/${data._id}`}><div className='p-2 bg-green-300 rounded-full'><FaEye/></div>   </Link>
             <Link to={`/updatewnote/${data._id}`}><div className='p-2 bg-orange-300 rounded-full'><FiEdit/></div>  </Link>
