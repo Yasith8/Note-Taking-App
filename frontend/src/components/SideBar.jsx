@@ -27,9 +27,9 @@ function SideBar() {
   },[])
   return (
     <div className="hidden sm:block bg-slate-100 md:w-1/6 md:mx-2">
-      <div className="flex items-center ml-5">
+      <Link to='/' className="flex items-center ml-5">
         <img src={img} alt="" className="w-[10rem]" />
-      </div>
+      </Link>
       <div className="w-full h-[1px] bg-gray-400 mt-4"></div>
       <div className="flex flex-col justify-between gap-4 mt-2">
         <div className="flex flex-col">
@@ -51,31 +51,15 @@ function SideBar() {
         <div>
           <div className="w-full h-[1px] bg-gray-300 mt-4"></div>
           <div className="flex flex-col mt-4">
-            <div className="flex items-center gap-4 text-gray-700 bg-slate-200  p-2 pl-5 mx-4 justify-evenly my-1 rounded-md">
-              <PiFolderNotchOpenLight />
-              <span>Categories</span>
-              <button>
-                <HiPlusSm />
-              </button>
-            </div>
-
-            {loading?(<div>Loading...</div>):(
-              category.map((item)=>(
-                <button key={item._id} className="flex items-center gap-4 text-gray-500 bg-slate-100  p-1 pl-[3.2rem] mx-4 justify-start rounded-md">
-              {item.name}
-            </button>
-                ))
-
-            )}
           </div>
         </div>
         <div>
-          <div className="w-full h-[1px] bg-gray-300 mt-4"></div>
+
           <div className="flex flex-col mt-4">
-            <button className="flex items-center gap-4 text-gray-500 bg-slate-100  p-1 pl-[3.2rem] mx-4 justify-start rounded-md">
+            <Link to='https://github.com/Yasith8/Note-Taking-App' target="_blank" className="flex items-center gap-4 text-gray-500 bg-slate-100  p-1 pl-[3.2rem] mx-4 justify-start rounded-md">
               <RiLifebuoyLine />
               Help
-            </button>
+            </Link>
           </div>
         </div>
       </div>

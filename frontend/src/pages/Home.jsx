@@ -16,7 +16,7 @@ function Home() {
   const [searchTerm, setSearchTerm] = useState('');
  
 
-  useEffect(()=>{
+  const fetchDefaultNotes=()=>{
     setLoading(true)
     axios.get('http://localhost:3000/note/active')
     .then((res)=>{
@@ -27,19 +27,22 @@ function Home() {
     .catch((err)=>
     console.log(err)
     )
+  }
+
+
+  useEffect(()=>{
+    fetchDefaultNotes()
   },[])
 
   const handleSearch = () => {
     axios.get(`http://localhost:3000/search?term=${searchTerm}`)
       .then((res) => {
-     
-        if (Array.isArray(res.data)) {
-          
-          setNotes(res.data);
-        } else {
-          
-          console.log("Unexpected response format:", res.data);
+        
+        if(notes.length==0){
+          fetchDefaultNotes
         }
+        setNotes(res.data);
+
       })
       .catch((err) => {
       

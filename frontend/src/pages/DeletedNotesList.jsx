@@ -25,7 +25,7 @@ function DeletedNotesList() {
   },[])
 
     return (
-        <div className='flex p-5 h-full max-h-fit bg-slate-100'>
+        <div className='flex p-5 min-h-screen h-fit max-h-fit bg-slate-100'>
         <SideBar/>
         <div className='w-full md:w-5/6 bg-white rounded-2xl pl-2 pb-5'>
         <div className='flex items-center justify-end'>
