@@ -18,7 +18,7 @@ function Home() {
   const fetchDefaultNotes = () => {
     setLoading(true);
     axios
-      .get("http://localhost:3000/note/active")
+      .get("https://note-taking-app-backend-six.vercel.app/note/active")
       .then((res) => {
         setNotes(res.data.data);
         setLoading(false);
@@ -35,7 +35,7 @@ function Home() {
   //search function for get dynamic data according to title and content
   const handleSearch = () => {
     axios
-      .get(`http://localhost:3000/search?term=${searchTerm}`)
+      .get(`https://note-taking-app-backend-six.vercel.app/search?term=${searchTerm}`)
       .then((res) => {
         //if there was a no result, then load the default data again
         if (notes.length == 0) {
@@ -70,7 +70,7 @@ function Home() {
               <IoIosSearch />
             </div>
             {/* this is dropdown menu . only displayed in mobile size */}
-            //todo
+        
           </div>
           <select
             name=""
