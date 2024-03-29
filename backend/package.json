@@ -1,4 +1,5 @@
 {
+    "proxy": "http://localhost:3000",
     "name": "backend",
     "version": "1.0.0",
     "description": "simple mern note taking application for open ended assignment",
