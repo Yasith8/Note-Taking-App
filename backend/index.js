@@ -17,12 +17,12 @@ const app = express();
 app.use(express.json())
 
 //middleware to handle cors policy 
-app.use(cors({
+app.use(cors());
+/* app.use(cors({
     origin: "https://note-taking-approntend.vercel.app/",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
-}));
-//app.use(cors());
+})); */
 
 
 
