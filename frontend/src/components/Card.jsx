@@ -9,11 +9,13 @@ import axios from 'axios';
 import { Link } from 'react-router-dom'
 
 
-
+//data come from parent component that get each and every note data
 function Card({data}) {
 
+  //catch category data
   const [category,setCategory]=useState([])
 
+  //when component mount get the category of this card
   useEffect(()=>{
       axios
       .get(`http://localhost:3000/category/${data.category}`)
@@ -38,8 +40,12 @@ function Card({data}) {
         <div className='flex justify-between items-end'>
       <div className={`p-2 w-[5rem] h-3 rounded-s-lg rounded-sm `} style={{backgroundColor:data.color}}></div>
         <div className='flex gap-3 justify-end'>
+
+          {/* button for view note */}
             <Link to={`/viewnote/${data._id}`}><div className='p-2 bg-green-300 rounded-full'><FaEye/></div>   </Link>
+          {/* button for update note */}
             <Link to={`/updatenote/${data._id}`}><div className='p-2 bg-orange-300 rounded-full'><FiEdit/></div>  </Link>
+          {/* button for temperery note */}
             <Link to={`/deletednote/${data._id}`}><div className='p-2 bg-red-300 rounded-full'><MdDeleteOutline/></div></Link>
         </div>
         </div>

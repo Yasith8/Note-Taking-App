@@ -2,7 +2,7 @@
 const express = require('express');
 require('dotenv').config();
 const mongoose = require('mongoose');
-const cors = require('cors');
+const cors = require('cors')
 
 const NoteRoutes = require('./routes/noteRoutes')
 
@@ -16,7 +16,7 @@ const app = express();
 // Middleware to parse incoming requests with JSON
 app.use(express.json())
 
-//middleware to handle cors policy
+//middleware to handle cors policy 
 app.use(cors());
 
 

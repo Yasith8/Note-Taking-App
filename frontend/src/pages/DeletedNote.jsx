@@ -14,6 +14,7 @@ function DeletedNote() {
   const [loading,setLoading]=useState(false);
   const navigate=useNavigate()
 
+  //get spesific note
   useEffect(()=>{
     setLoading(true)
     axios.get(`http://localhost:3000/note/${id}`)
@@ -28,6 +29,7 @@ function DeletedNote() {
     )
   },[id])
 
+  //when click delete button user can do restore or delete item
   const submitHandler=()=>{
       axios.put(`http://localhost:3000/note/delete/${id}`)
       .then(()=>{
@@ -50,6 +52,12 @@ function DeletedNote() {
         <div className='flex p-5 h-screen w-screen max-h-fit bg-slate-900'>
       <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-10 min-w-[25rem] w-fit h-[10rem] flex flex-col items-center'>
         <div className='flex items-center justify-center'>
+
+          {/* 
+          dynamically displayed 
+             if it is deleted card-> show msg to resote that card
+             if it is active card-> show msg to delete that card
+          */}
           <h1 className='text-[1.3rem] font-bold'>Are you sure to {isActive?('Delete'):('Restore')} {notes.title}?</h1>
         </div>
         <div className='flex w-[100%] items-center justify-center gap-7 mt-5'>
