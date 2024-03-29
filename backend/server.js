@@ -20,6 +20,10 @@ app.use(express.json())
 app.use(cors());
 
 
+app.get('/', (req, res) => {
+    res.json({ message: 'Welcome to Note API' })
+})
+
 app.use('/note', NoteRoutes)
 
 
