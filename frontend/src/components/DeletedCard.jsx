@@ -4,7 +4,6 @@ import "../App.css";
 import { FaEye } from "react-icons/fa";
 import { TbRestore } from "react-icons/tb";
 
-import GetCategory from "./GetCategory";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Loader from "./Loader";

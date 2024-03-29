@@ -4,7 +4,6 @@ import '../App.css'
 import { FaEye } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
-import GetCategory from './GetCategory';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 
