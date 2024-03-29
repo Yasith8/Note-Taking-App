@@ -18,6 +18,9 @@ app.use(express.json())
 
 //middleware to handle cors policy 
 app.use(cors());
+app.use(cors({
+    origin: 'https://note-taking-approntend-5q2y52z2h-yasith8s-projects.vercel.app/'
+}));
 
 
 app.get('/', (req, res) => {

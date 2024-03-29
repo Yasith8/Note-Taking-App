@@ -18,7 +18,7 @@ function Home() {
   const fetchDefaultNotes = () => {
     setLoading(true);
     axios
-      .get("https://note-taking-app-backend-opmqt6i6h-yasith8s-projects.vercel.app/note/active")
+      .get("http://localhost:3000/note/active")
       .then((res) => {
         setNotes(res.data.data);
         setLoading(false);
