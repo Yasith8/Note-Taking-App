@@ -52,7 +52,7 @@ function Home() {
   return (
     <div className="flex p-5 h-full max-h-fit bg-slate-100">
       <SideBar />
-      <div className="w-full md:w-5/6 bg-white rounded-2xl pl-2 pb-5">
+      <div className="w-full h-screen max-h-fit md:w-5/6 bg-white rounded-2xl pl-2 pb-5">
         <div className="flex items-center justify-between">
           <div className="w-1/2 m-5 rounded-full p-2 bg-slate-100 flex items-center justify-between">
             <input
