@@ -17,7 +17,7 @@ function DeletedNote() {
   //get spesific note
   useEffect(()=>{
     setLoading(true)
-    axios.get(`http://localhost:3000/note/${id}`)
+    axios.get(`https://note-taking-app-backend-six.vercel.app/note/${id}`)
     .then((res)=>{
       setNotes(res.data);
       setLoading(false)
@@ -31,7 +31,7 @@ function DeletedNote() {
 
   //when click delete button user can do restore or delete item
   const submitHandler=()=>{
-      axios.put(`http://localhost:3000/note/delete/${id}`)
+      axios.put(`https://note-taking-app-backend-six.vercel.app/note/delete/${id}`)
       .then(()=>{
         alert(notes.title+` has been ${isActive?"added":"removed"} to recycle bin`);
         navigate('/')

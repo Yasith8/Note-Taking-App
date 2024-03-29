@@ -17,7 +17,7 @@ function Card({data}) {
   //when component mount get the category of this card
   useEffect(()=>{
       axios
-      .get(`http://localhost:3000/category/${data.category}`)
+      .get(`https://note-taking-app-backend-six.vercel.app/category/${data.category}`)
       .then((res)=>{
           setCategory(res.data)
           console.log(category)

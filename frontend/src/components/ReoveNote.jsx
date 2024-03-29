@@ -12,7 +12,7 @@ function ReoveNote() {
   const submitHandler = () => {
     setLoading(true);
     axios
-      .delete(`http://localhost:3000/remove`)
+      .delete(`https://note-taking-app-backend-six.vercel.app/remove`)
       .then(() => {
         setLoading(false);
         alert("Recycle Bin is Empty now");

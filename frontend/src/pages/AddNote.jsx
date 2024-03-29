@@ -22,7 +22,7 @@ function AddNote() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:3000/category")
+      .get("https://note-taking-app-backend-six.vercel.app/category")
       .then((res) => {
         setLoading(false);
         setCategoryList(res.data);
@@ -51,7 +51,7 @@ function AddNote() {
 
       //post the data to db
       axios
-        .post("http://localhost:3000/note", newNote)
+        .post("https://note-taking-app-backend-six.vercel.app/note", newNote)
         .then(() => {
           alert("Note Added Successfully");
           navigate("/");

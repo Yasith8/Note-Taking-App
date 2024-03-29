@@ -14,7 +14,7 @@ function DeletedNotesList() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:3000/note/inactive")
+      .get("https://note-taking-app-backend-six.vercel.app/note/inactive")
       .then((res) => {
         setNotes(res.data.data);
         setLoading(false);
