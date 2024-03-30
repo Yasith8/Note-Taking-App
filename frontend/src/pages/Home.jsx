@@ -8,7 +8,6 @@ import axios from "axios";
 import Drawer from "../components/DrawerComp";
 import EmptyComp from "../components/EmptyComp";
 
-
 function Home() {
   //usestate for stored fetched data from db
   const [notes, setNotes] = useState([]);
@@ -16,7 +15,6 @@ function Home() {
   const [loading, setLoading] = useState(false);
   //get parameters to search note data
   const [searchTerm, setSearchTerm] = useState("");
-
 
   //function to get all active data
   const fetchDefaultNotes = () => {
@@ -39,7 +37,9 @@ function Home() {
   //search function for get dynamic data according to title and content
   const handleSearch = () => {
     axios
-      .get(`https://note-taking-app-backend-six.vercel.app/search?term=${searchTerm}`)
+      .get(
+        `https://note-taking-app-backend-six.vercel.app/search?term=${searchTerm}`
+      )
       .then((res) => {
         //if there was a no result, then load the default data again
         if (notes.length == 0) {
@@ -52,8 +52,6 @@ function Home() {
         console.log("Error occurred during search:", err);
       });
   };
-
-  
 
   return (
     <div className="flex p-5 h-full max-h-fit bg-slate-100">
@@ -75,11 +73,8 @@ function Home() {
             <div className="p-3 bg-white rounded-full">
               <IoIosSearch />
             </div>
-            
-        
           </div>
-        <Drawer/>
-          
+          <Drawer />
         </div>
         {/* if there was some issues load the loader
                  this trigger when
@@ -88,13 +83,15 @@ function Home() {
          */}
         {loading ? (
           <Loader />
-        ) : (notes.length==0?(<EmptyComp/>):( /* if not display this div */
-        <div class="grid grid-flow-row-dense sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-3 pl-4">
-        {/* dynamically displayed note data */}
-        {notes.map((item) => (
-          <Card key={item._id} data={item} />
-        ))}
-       </div>)
+        ) : notes.length == 0 ? (
+          <EmptyComp /> /* if not display this div */
+        ) : (
+          <div class="grid grid-flow-row-dense sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-3 pl-4">
+            {/* dynamically displayed note data */}
+            {notes.map((item) => (
+              <Card key={item._id} data={item} />
+            ))}
+          </div>
         )}
         <AddButton />
       </div>
@@ -103,5 +100,3 @@ function Home() {
 }
 
 export default Home;
-
-

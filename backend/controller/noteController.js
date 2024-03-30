@@ -224,10 +224,12 @@ const DeleteInActiveNotes = async(req, res) => {
 }
 
 
+//shadule the hard delete process
 const AutoHardDeleteNotes = () => {
     cron.schedule('0 0 * * *', async() => {
         try {
             const thirtyDaysAgo = new Date();
+            //delete automatically after 30 days from user last updated time
             thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
             await Note.deleteMany({ isActive: false, updatedAt: { $lt: thirtyDaysAgo } });
             console.log('Inactive documents older than 30 days deleted successfully.');
