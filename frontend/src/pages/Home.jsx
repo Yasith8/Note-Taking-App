@@ -5,6 +5,8 @@ import Card from "../components/Card";
 import AddButton from "../components/AddButton";
 import Loader from "../components/Loader";
 import axios from "axios";
+import Drawer from "../components/DrawerComp";
+
 
 function Home() {
   //usestate for stored fetched data from db
@@ -13,6 +15,7 @@ function Home() {
   const [loading, setLoading] = useState(false);
   //get parameters to search note data
   const [searchTerm, setSearchTerm] = useState("");
+
 
   //function to get all active data
   const fetchDefaultNotes = () => {
@@ -49,6 +52,8 @@ function Home() {
       });
   };
 
+  
+
   return (
     <div className="flex p-5 h-full max-h-fit bg-slate-100">
       <SideBar />
@@ -69,19 +74,12 @@ function Home() {
             <div className="p-3 bg-white rounded-full">
               <IoIosSearch />
             </div>
-            {/* this is dropdown menu . only displayed in mobile size */}
+            
         
           </div>
-          <select
-            name=""
-            id=""
-            className="mr-5 sm:hidden p-3 border-2 w-[8rem] text-slate-400 border-slate-400 rounded-full"
-          >
-            <option value="">Home</option>
-            <option value="">Form</option>
-          </select>
+          
         </div>
-
+        <Drawer/>
         {/* if there was some issues load the loader
                  this trigger when
                       * error occur
