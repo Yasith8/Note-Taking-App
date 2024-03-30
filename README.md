@@ -42,6 +42,29 @@ $ npm install
 $ npm start
 ```
 
+After Installing process need to setup environment variables in Server Directory
+
+```bash
+# Setup .env
+$ URL = Your Database Link
+$ PORT = Your Port Link
+```
+
+Finally Run the Project.
+
+```bash
+# Run Frontend
+
+$ cd frontend
+$ npm run dev
+
+# Run Backend
+$ cd backend
+$ npm run dev
+```
+
+
+
 ## Features
 - CRUD Operations 
   - User can Create new Note
