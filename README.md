@@ -1,4 +1,4 @@
-<h1 align="center">
+![FireShot Capture 388 - Diary Home - localhost](https://github.com/Yasith8/Note-Taking-App/assets/90121062/7e7528cf-2e8d-46cd-ad4c-7eb43d3c3a4a)<h1 align="center">
   <br>
   <a href="http://"><img src="https://github.com/Yasith8/Note-Taking-App/assets/90121062/5b9856e3-a975-407f-81df-f4d8b562ecb0" alt="note-taking-app" width="400" height="`180"></a>
   <br>
@@ -83,4 +83,9 @@ $ npm run dev
   - User can categorised notes
 
 - User can select prefered color for note
+
+## Snapshots
+
+![Uploading Layer 0.jpg…]()
+
 
