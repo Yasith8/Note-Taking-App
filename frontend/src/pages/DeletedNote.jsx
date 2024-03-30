@@ -50,7 +50,7 @@ function DeletedNote() {
       {loading?(<Loader/>):(
 
         <div className='flex p-5 h-screen w-screen max-h-fit bg-slate-900'>
-      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-10 min-w-[25rem] w-fit h-[10rem] flex flex-col items-center'>
+      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-10 md:min-w-[25rem] md:w-fit md:h-[10rem] flex flex-col items-center'>
         <div className='flex items-center justify-center'>
 
           {/* 
