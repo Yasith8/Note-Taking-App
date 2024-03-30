@@ -6,6 +6,7 @@ import AddButton from "../components/AddButton";
 import Loader from "../components/Loader";
 import axios from "axios";
 import Drawer from "../components/DrawerComp";
+import EmptyComp from "../components/EmptyComp";
 
 
 function Home() {
@@ -77,9 +78,9 @@ function Home() {
             
         
           </div>
+        <Drawer/>
           
         </div>
-        <Drawer/>
         {/* if there was some issues load the loader
                  this trigger when
                       * error occur
@@ -87,14 +88,13 @@ function Home() {
          */}
         {loading ? (
           <Loader />
-        ) : (
-          /* if not display this div */
-          <div class="grid grid-flow-row-dense sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-3 pl-4">
-            {/* dynamically displayed note data */}
-            {notes.map((item) => (
-              <Card key={item._id} data={item} />
-            ))}
-          </div>
+        ) : (notes.length==0?(<EmptyComp/>):( /* if not display this div */
+        <div class="grid grid-flow-row-dense sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-3 pl-4">
+        {/* dynamically displayed note data */}
+        {notes.map((item) => (
+          <Card key={item._id} data={item} />
+        ))}
+       </div>)
         )}
         <AddButton />
       </div>
@@ -103,3 +103,5 @@ function Home() {
 }
 
 export default Home;
+
+

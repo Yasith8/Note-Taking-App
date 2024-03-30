@@ -5,6 +5,7 @@ import axios from "axios";
 import Loader from "../components/Loader";
 import DeletedCard from "../components/DeletedCard";
 import { Link } from "react-router-dom";
+import EmptyComp from "../components/EmptyComp";
 
 function DeletedNotesList() {
   const [notes, setNotes] = useState([]);
@@ -40,12 +41,11 @@ function DeletedNotesList() {
 
         {loading ? (
           <Loader />
-        ) : (
-          <div class="grid grid-flow-row-dense sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-3 pl-4">
-            {notes.map((item) => (
-              <DeletedCard key={item._id} data={item} />
-            ))}
-          </div>
+        ) : (notes.length==0?(<EmptyComp/>):(<div class="grid grid-flow-row-dense sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-3 pl-4">
+        {notes.map((item) => (
+          <DeletedCard key={item._id} data={item} />
+        ))}
+      </div>)
         )}
       </div>
     </div>
@@ -53,3 +53,4 @@ function DeletedNotesList() {
 }
 
 export default DeletedNotesList;
+
