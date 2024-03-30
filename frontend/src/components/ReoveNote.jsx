@@ -10,10 +10,10 @@ function ReoveNote() {
   const [delNote,setDelNote]=useState([]);
 
   //get deleted note to check if there is any note left to delete
-  useEffect((res)=>{
+  useEffect(()=>{
     setLoading(true);
     axios.get("https://note-taking-app-backend-six.vercel.app/note/inactive")
-    .then(()=>{
+    .then((res)=>{
       setLoading(false)
       setDelNote(res.data)
     })
