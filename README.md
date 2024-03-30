@@ -42,6 +42,29 @@ $ npm install
 $ npm start
 ```
 
+After Installing process need to setup environment variables in Server Directory
+
+```bash
+# Setup .env
+$ URL = Your Database Link
+$ PORT = Your Port Link
+```
+
+Finally Run the Project.
+
+```bash
+# Run Frontend
+
+$ cd frontend
+$ npm run dev
+
+# Run Backend
+$ cd backend
+$ npm run dev
+```
+
+
+
 ## Features
 - CRUD Operations 
   - User can Create new Note
@@ -60,4 +83,10 @@ $ npm start
   - User can categorised notes
 
 - User can select prefered color for note
+
+## Snapshots
+
+![FireShot Capture 388 - Diary Home - localhost](https://github.com/Yasith8/Note-Taking-App/assets/90121062/7e7528cf-2e8d-46cd-ad4c-7eb43d3c3a4a)
+![FireShot Capture 386 - Diary Home - localhost](https://github.com/Yasith8/Note-Taking-App/assets/90121062/fa20dba1-726d-4c90-b5b9-b011a433cfe2)
+
 
