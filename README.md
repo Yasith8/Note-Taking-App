@@ -21,8 +21,7 @@
 <p align="center">
   <a href="#how-to-use">How To Use</a> •
   <a href="#features">Features</a> •
-  <a href="#snap">Snapshots</a> •
-  <a href="#note">Special Notes</a> 
+  <a href="#snap">Snapshots</a> 
 </p>
 
 
